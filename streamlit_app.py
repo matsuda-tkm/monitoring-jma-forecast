@@ -5,7 +5,6 @@ import numpy as np
 import streamlit as st
 import json
 import os
-import matplotlib.pyplot as plt
 
 # 認証
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
