@@ -1,9 +1,24 @@
-function writeJSON() {
+function writeJSON2() {
   // スプレッドシートとの接続
-  const SHEET_ID = "xxxxxxxxxxxxxxxxxxxxxx";
-  const SHEET_NAME = "data";
-  var spreadSheet = SpreadsheetApp.openById(SHEET_ID);
-  var sheet = spreadSheet.getSheetByName(SHEET_NAME);
+  var flg = 0;
+  var sheetIdList = ["xxxxxxxxxxxxxxxxxxxxxx","xxxxxxxxxxxxxxxxxxxxxx"];
+  for (var i=0; i<sheetIdList.length; i++) {
+    var SHEET_ID = sheetIdList[i];
+    var spreadSheet = SpreadsheetApp.openById(SHEET_ID);
+    for (var j=0; j<41; j++){
+      var sheet = spreadSheet.getSheetByName("data" + j);
+      var currentRowCount = sheet.getLastRow();
+      if (currentRowCount < 17500) {
+        flg = 1;
+        break;
+      }
+      console.log(`[FULL] ${SHEET_ID} - data${j}`);
+    }
+    if (flg) {
+      console.log(`[Start] ${SHEET_ID} - data${j}`)
+      break;
+    }
+  }
 
   // JSONを取得
   var areaCodeList = ["011000","012000","016000","013000","014100","015000","017000","020000","050000","030000","040000","060000","070000","080000","090000","100000","110000","120000","130000","140000","200000","190000","220000","230000","210000","240000","150000","160000","170000","180000","250000","260000","270000","280000","290000","300000","330000","340000","320000","310000","360000","370000","380000","390000","350000","400000","440000","420000","410000","430000","450000","460100","471000","472000","473000","474000"];
