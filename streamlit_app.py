@@ -60,11 +60,12 @@ with open('./weatherCode.json', 'r', encoding='utf-8') as f:
 
 #################### 以下、表示 ####################
 st.title('気象庁天気予報追跡アプリ')
+st.caption('ここに表示されている天気予報は，気象庁が発表したものです．定期的に気象庁の天気予報を取得して保存し，予報対象日時の1週間前から前日までに発表された予報をまとめて表示しています．')
 
 # targetDateを入力(date_input)
 targetDate = st.date_input(
     "予報対象日を選択してください",
-    value=pd.to_datetime(df['targetDate']).mean(),
+    value='today',
     min_value=pd.to_datetime(df['targetDate']).min(),
     max_value=pd.to_datetime(df['targetDate']).max()
 ).strftime('%Y-%m-%d')
@@ -91,7 +92,7 @@ st.write('**天気**')
 cols = [st.columns(4) for i in range(4)]
 for i,(date,weatherCode) in enumerate(zip(sub['reportDatetime'].values,sub['weatherCode'].values)):
     with cols[i//4][i%4]:
-        st.write(date[:10] + '(' + date[11:13] + '時)')
+        st.write(date[:10] + '(' + date[11:13] + '時)時点')
         if weatherCode is not np.nan:
             st.image(f'https://www.jma.go.jp/bosai/forecast/img/{weatherCode_dict[str(weatherCode)][0]}')
 
