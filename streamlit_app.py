@@ -74,7 +74,7 @@ targetDate = st.date_input(
 area = st.selectbox(
     '地域を選択してください',
     list(areaCode_dict.keys()),
-    # index=list(areaCode_dict.keys()).index(area)
+    index=list(areaCode_dict.keys()).index('京都府')
 )
 
 # 抽出
