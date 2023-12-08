@@ -79,7 +79,7 @@ area = st.selectbox(
 
 # 抽出
 areaCode = areaCode_dict[area]
-sub = df[df['targetDate']+df['areaCode'] == targetDate+'T00:00:00+09:00'+areaCode]
+sub = df[df['targetDate']+df['areaCode'] == targetDate+'T00:00:00+09:00'+areaCode].copy()
 
 # 予報対象日時
 cols0 = st.columns(2)
